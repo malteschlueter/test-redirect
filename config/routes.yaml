@@ -2,6 +2,10 @@ my_new_route:
     path: /
     controller: App\Controller\DefaultController::index
 
+my_new_route_with_old_param:
+    path: /test/{myparam}
+    controller: App\Controller\DefaultController::index
+
 legacy.route.name:
     path: /{myparam}/my-legacy-url.php
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
@@ -10,10 +14,18 @@ legacy.route.name:
         permanent: true
         keepQueryParams: false
 
-legacy.route.name.keep:
+legacy.route.name.keep_query_params:
     path: /{myparam}/keep-my-legacy-url.php
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
     defaults:
         route: my_new_route
+        permanent: true
+        keepQueryParams: true
+
+legacy.route.name.keep_url_param:
+    path: /{myparam}/keep-url-param-in-my-legacy-url.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: my_new_route_with_old_param
         permanent: true
         keepQueryParams: true
