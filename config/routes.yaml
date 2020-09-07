@@ -1,3 +1,19 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+my_new_route:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+legacy.route.name:
+    path: /{myparam}/my-legacy-url.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: my_new_route
+        permanent: true
+        keepQueryParams: false
+
+legacy.route.name.keep:
+    path: /{myparam}/keep-my-legacy-url.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: my_new_route
+        permanent: true
+        keepQueryParams: true
